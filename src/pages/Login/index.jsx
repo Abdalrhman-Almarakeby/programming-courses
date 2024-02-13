@@ -32,7 +32,7 @@ export default function Login() {
         <p className="text-sm text-gray-600">Or sign up using</p>
 
         <a
-          href="https://courses-api-isuk.onrender.com/auth/google"
+          href="http://localhost:3000/auth/google"
           className="flex max-w-xs items-center rounded-lg border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-darkBlue shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
         >
           <GoogleIcon className="mr-2 h-6 w-6" />
@@ -40,7 +40,7 @@ export default function Login() {
         </a>
 
         <a
-          href="https://courses-api-isuk.onrender.com/auth/google"
+          href="http://localhost:3000/auth/google"
           className="flex max-w-xs items-center rounded-lg border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-darkBlue shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
         >
           <LinkedinIcon className="mr-2 h-6 w-6" />
@@ -48,7 +48,7 @@ export default function Login() {
         </a>
 
         <a
-          href="https://courses-api-isuk.onrender.com/auth/google"
+          href="http://localhost:3000/auth/google"
           className="flex max-w-xs items-center rounded-lg border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-darkBlue shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
         >
           <GithubIcon className="mr-2 h-6 w-6" />

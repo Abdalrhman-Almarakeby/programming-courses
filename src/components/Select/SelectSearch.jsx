@@ -42,7 +42,6 @@ export default function SelectSearch(props) {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      props.setIsTouched(true);
       props.toggleOption(props.filteredOptions[props.highlightedIndex]);
       props.setFilteredOptions(props.options);
       e.target.value = "";
@@ -67,10 +66,10 @@ export default function SelectSearch(props) {
 
   function handleSearchFocus() {
     props.setIsOpen(true);
-    setTimeout(
-      () => props.selectContainer?.querySelector("li")?.scrollIntoView({ behavior: "instant" }),
-      0
-    );
+    // setTimeout(
+    //   () => props.selectContainer?.querySelector("li")?.scrollIntoView({ behavior: "instant" }),
+    //   0
+    // );
   }
 
   return (

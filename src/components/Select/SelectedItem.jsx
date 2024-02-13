@@ -11,7 +11,9 @@ export default function SelectedItem(props) {
       className="group flex cursor-pointer items-center gap-1 rounded border-[0.01px] border-[#777] bg-none px-1 py-0.5 hover:border-red-600 hover:bg-[#ffcccc] focus:border-red-600 focus:bg-[#ffcccc]"
     >
       {props.value}
-      <span className="text-xl text-[#777] group-focus:text-red-600">×</span>
+      <span className="group-hover:text-red-700 text-xl text-darkBlue transition-[color] group-focus:text-red-700">
+        ×
+      </span>
     </button>
   );
 }

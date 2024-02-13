@@ -7,7 +7,7 @@ import { TOPICS } from "../../constant/topics";
 import Loading from "../../components/Loading";
 import Select from "../../components/Select";
 
-const API_ENDPOINT = "https://courses-api-isuk.onrender.com/courses";
+const API_ENDPOINT = "http://localhost:3000/courses";
 
 export default function AddCourse() {
   const [formData, setFormData] = useState({
@@ -76,12 +76,14 @@ export default function AddCourse() {
   return (
     <div className="container flex-grow py-8">
       {isLoading && <Loading />}
-      <h2 className="text-balance py-6 text-center text-4xl font-semibold capitalize">
+      <h2 className="text-balance pb-6 text-center text-4xl font-semibold capitalize">
         Contribute and add your favorite courses !!!
       </h2>
       <hr />
       <div className="py-6">
-        <p className="py-4 text-lg">Before adding the course, please follow these rules:</p>
+        <p className="py-4 text-lg font-medium">
+          Before adding the course, please follow these rules:
+        </p>
         <ol className="list-inside list-decimal pl-2">
           {RULES.map((rule, index) => (
             <li key={index}>{rule}</li>
@@ -95,7 +97,7 @@ export default function AddCourse() {
         onSubmit={handleSubmit}
         className="grid gap-8 pt-8 md:grid-cols-2 xl:grid-cols-3"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="name">Name: </label>
           <input
             value={formData.name}
@@ -108,7 +110,7 @@ export default function AddCourse() {
             required
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="link">Link to the course: </label>
           <input
             value={formData.link}
@@ -121,7 +123,7 @@ export default function AddCourse() {
             required
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="name">Level: </label>
           <Select
             options={["Beginner", "Intermediate", "Advanced"]}
@@ -140,14 +142,14 @@ export default function AddCourse() {
           <textarea
             value={formData.description}
             onChange={handleChange}
-            className="max-w-80 p-2"
+            className="p-2 md:max-w-80"
             name="description"
             id="description"
             placeholder="Write a description about the course including the level, duration, topics, etc."
             required
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="field">Field:</label>
           <Select
             options={FIELDS.sort((first, second) => {
@@ -193,7 +195,7 @@ export default function AddCourse() {
             }
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col items-start gap-4">
           <label htmlFor="date">The year: </label>
           <input
             value={formData.date.toString()}
@@ -209,7 +211,7 @@ export default function AddCourse() {
             required
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="instructor">Instructor: </label>
           <input
             value={formData.instructor}
@@ -221,7 +223,7 @@ export default function AddCourse() {
             required
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="company">Company: </label>
           <input
             value={formData.company}
@@ -234,7 +236,7 @@ export default function AddCourse() {
           />
         </div>
         <button
-          className="mt-8 justify-self-center rounded-md bg-emerald-800 px-4 py-2 capitalize text-white"
+          className="mt-8 justify-self-center rounded-md bg-emerald-800 px-4 py-2 capitalize text-white transition hover:bg-emerald-900 focus:outline-offset-4"
           disabled={isLoading}
         >
           {isLoading ? "Adding..." : "Add the course"}

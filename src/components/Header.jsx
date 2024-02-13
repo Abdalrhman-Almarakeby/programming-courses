@@ -18,7 +18,7 @@ export default function Header() {
     let prevScrollPos = window.scrollY;
 
     window.addEventListener("scroll", () => {
-      if (window.screenY < 50) {
+      if (window.scrollY < 50) {
         setOnTop(true);
       } else {
         setOnTop(false);
@@ -82,14 +82,14 @@ export default function Header() {
               : "-right-full invisible pointer-events-none md:visible md:pointer-events-auto"
           }  bg-emerald-800  pt-20 md:pt-0 flex-col-reverse absolute top-0 px-4 md:p-0 flex md:min-h-0 min-h-[100svh] items-center md:flex-row md:bg-auto md:z-auto justify-end md:justify-end gap-4 transition-[right] md:static`}
         >
-          <li>
+          <li onClick={() => setMenuOpen(false)}>
             <Link to="/courses">Courses</Link>
           </li>
-          <li>
+          <li onClick={() => setMenuOpen(false)}>
             <Link to="/add-course">Add Course</Link>
           </li>
-          {!pathname.includes("auth") && (
-            <li>
+          {/* {!pathname.includes("auth") && (
+            <li onClick={()=> setMenuOpen(false)}>
               <Link to="/account">
                 <img
                   src="https://placehold.co/100"
@@ -98,7 +98,16 @@ export default function Header() {
                 />
               </Link>
             </li>
-          )}
+          )} */}
+
+          <li onClick={() => setMenuOpen(false)}>
+            <Link
+              to="/auth/login"
+              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-darkBlue"
+            >
+              Log in
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

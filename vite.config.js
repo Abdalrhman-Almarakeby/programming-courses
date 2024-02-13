@@ -5,8 +5,8 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: "/programming-course",
+  base: "/programming-courses",
   server: {
-    port: 3000,
+    port: 3001,
   },
 });

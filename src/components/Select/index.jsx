@@ -7,24 +7,23 @@ export default function Select(props) {
   const [filteredOptions, setFilteredOptions] = useState(props.options);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const [isTouched, setIsTouched] = useState(false);
 
   const containerRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) setHighlightedIndex(0);
-  }, [isOpen]);
+  }, [isOpen, props.value]);
 
   function clearOptions() {
     props.multiple ? props.onChange([]) : props.onChange(undefined);
   }
 
   function toggleOption(option) {
-    if (!props.multiple && option !== props.value) return props.onChange(props.option);
+    if (!props.multiple && option !== props.value) return props.onChange(option);
 
     if (!props.value.includes(option)) return props.onChange([...props.value, option]);
 
-    props.onChange(props.value.filter((o) => o !== option));
+    if (props.multiple) props.onChange(props.value.filter((o) => o !== option));
   }
 
   function isOptionSelected(option) {
@@ -41,7 +40,6 @@ export default function Select(props) {
 
         if (isOpen) {
           toggleOption(props.options[highlightedIndex]);
-          setIsTouched(true);
         }
 
         break;
@@ -70,7 +68,8 @@ export default function Select(props) {
   }
 
   function getSelectValue() {
-    if (props.placeholder && !isTouched) return props.placeholder;
+    if (props.placeholder && !props.value.length)
+      return <span className="text-gray-400">{props.placeholder}</span>;
     if (!props.multiple) return props.value;
 
     return props.value.map((value) => (
@@ -85,14 +84,10 @@ export default function Select(props) {
 
   function handleOptionClick(e) {
     e.stopPropagation();
-    e.preventDefault();
-    setIsTouched(true);
-
     toggleOption(filteredOptions[highlightedIndex]);
+    setIsOpen(false);
     e.target.value = "";
     setFilteredOptions(props.options);
-
-    document.getElementById("select-search").focus();
   }
 
   return (
@@ -103,7 +98,6 @@ export default function Select(props) {
           setHighlightedIndex={setHighlightedIndex}
           highlightedIndex={highlightedIndex}
           setIsOpen={setIsOpen}
-          setIsTouched={setIsTouched}
           toggleOption={toggleOption}
           filteredOptions={filteredOptions}
           selectContainer={containerRef.current}
@@ -117,7 +111,7 @@ export default function Select(props) {
         onBlur={() => setIsOpen(false)}
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleContainerKeydown}
-        className="select-element relative flex items-center gap-2 rounded-md bg-white p-2 pr-8 after:absolute after:right-2 after:top-1/2 after:border-4 after:border-t-4 after:border-transparent after:border-t-darkBlue"
+        className="select-element relative flex items-center gap-2 rounded-md bg-white p-2 pr-8 after:absolute after:right-2.5 after:top-1/2 after:border-[6px] after:border-t-[6px] after:border-transparent after:border-t-darkBlue"
       >
         <span className="flex flex-grow flex-wrap gap-2">{getSelectValue()}</span>
         {props.multiple && (
@@ -130,7 +124,7 @@ export default function Select(props) {
                 clearOptions();
                 containerRef.current.focus();
               }}
-              className="cursor-pointer border-none bg-[none] p-0 text-2xl font-extrabold text-[#777] hover:text-red-700 focus:text-red-700"
+              className="cursor-pointer border-none bg-[none] p-0 text-2xl font-extrabold transition-[color] text-darkBlue hover:text-red-700 focus:text-red-700"
             >
               ×
             </button>
