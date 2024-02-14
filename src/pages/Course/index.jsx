@@ -9,7 +9,7 @@ export default function Course() {
     data: courseData,
     isPending,
     error,
-  } = useFetch(`http://localhost:3000/courses/${id}`);
+  } = useFetch(`https://courses-api-isuk.onrender.com/courses/${id}`);
   console.log(courseData);
   return (
     <div className="flex-grow">

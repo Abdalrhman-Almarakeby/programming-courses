@@ -486,6 +486,13 @@ label {
   font-weight: 600;
 }
 
+@media print {
+  html,
+    body {
+    display: none;
+  }
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -793,6 +800,10 @@ label {
   max-height: 15rem;
 }
 
+.min-h-\[100px\] {
+  min-height: 100px;
+}
+
 .min-h-\[100svh\] {
   min-height: 100svh;
 }
@@ -1024,10 +1035,6 @@ label {
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-8 {
-  padding: 2rem;
 }
 
 .px-1 {
@@ -1391,16 +1398,8 @@ label {
   outline-offset: 2px;
 }
 
-.focus\:outline-4:focus {
-  outline-width: 4px;
-}
-
 .focus\:outline-offset-4:focus {
   outline-offset: 4px;
-}
-
-.focus\:outline-white:focus {
-  outline-color: #fff;
 }
 
 .focus\:ring-2:focus {
@@ -1479,6 +1478,11 @@ label {
 
   .md\:p-0 {
     padding: 0px;
+  }
+
+  .md\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .md\:pt-0 {

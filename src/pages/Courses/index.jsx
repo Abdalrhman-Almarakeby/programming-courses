@@ -4,7 +4,7 @@ import Loading from "../../components/Loading";
 import FilterBar from "./FilterBar";
 import CourseCard from "./CourseCard";
 
-const API_ENDPOINT = "http://localhost:3000/courses";
+const API_ENDPOINT = "https://courses-api-isuk.onrender.com/courses";
 
 export default function Home() {
   const { data: courses, isPending, error } = useFetch(API_ENDPOINT);

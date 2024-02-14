@@ -7,7 +7,7 @@ import { TOPICS } from "../../constant/topics";
 import Loading from "../../components/Loading";
 import Select from "../../components/Select";
 
-const API_ENDPOINT = "http://localhost:3000/courses";
+const API_ENDPOINT = "https://courses-api-isuk.onrender.com/courses";
 
 export default function AddCourse() {
   const [formData, setFormData] = useState({
@@ -142,7 +142,7 @@ export default function AddCourse() {
           <textarea
             value={formData.description}
             onChange={handleChange}
-            className="p-2 md:max-w-80"
+            className="min-h-[100px] p-2 md:max-w-80"
             name="description"
             id="description"
             placeholder="Write a description about the course including the level, duration, topics, etc."
