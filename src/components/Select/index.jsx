@@ -5,6 +5,7 @@ import SelectedItem from "./SelectedItem.jsx";
 
 export default function Select(props) {
   const [filteredOptions, setFilteredOptions] = useState(props.options);
+  console.log(filteredOptions.length);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
@@ -82,12 +83,12 @@ export default function Select(props) {
     ));
   }
 
-  function handleOptionClick(e) {
+  function handleOptionClick(e, index) {
     e.stopPropagation();
-    toggleOption(filteredOptions[highlightedIndex]);
+    toggleOption(filteredOptions[index]);
     setIsOpen(false);
-    e.target.value = "";
     setFilteredOptions(props.options);
+    e.target.value = "";
   }
 
   return (
@@ -124,7 +125,7 @@ export default function Select(props) {
                 clearOptions();
                 containerRef.current.focus();
               }}
-              className="cursor-pointer border-none bg-[none] p-0 text-2xl font-extrabold transition-[color] text-darkBlue hover:text-red-700 focus:text-red-700"
+              className="cursor-pointer border-none bg-[none] p-0 text-2xl font-extrabold text-red-700 transition-[color] lg:text-darkBlue lg:hover:text-red-700 lg:focus:text-red-700"
             >
               ×
             </button>
@@ -136,18 +137,26 @@ export default function Select(props) {
           className="absolute left-0 top-[calc(100%+5px)] z-20 max-h-60 min-w-full overflow-y-auto rounded border border-gray-400 bg-white"
           style={{ display: isOpen ? "block" : "none" }}
         >
-          {filteredOptions.map((option, index) => (
-            <li
-              onClick={handleOptionClick}
-              onMouseEnter={() => setHighlightedIndex(index)}
-              key={option}
-              className={`px-2 py-1 cursor-pointer whitespace-nowrap  ${
-                isOptionSelected(option) ? "bg-emerald-800 text-white" : ""
-              } ${index === highlightedIndex && !isTouchDevice() ? "bg-[#11c76e] text-black" : ""}`}
-            >
-              {option}
-            </li>
-          ))}
+          {filteredOptions.length ? (
+            filteredOptions.map((option, index) => (
+              <li
+                onClick={(e) => handleOptionClick(e, index)}
+                onMouseEnter={() => setHighlightedIndex(index)}
+                key={option}
+                className={`px-2 py-1 cursor-pointer whitespace-nowrap  ${
+                  isOptionSelected(option) ? "bg-emerald-800 text-white" : ""
+                } ${
+                  index === highlightedIndex && !isTouchDevice() ? "bg-[#11c76e] text-black" : ""
+                }`}
+              >
+                {option}
+              </li>
+            ))
+          ) : (
+            <p className="p-2 text-center font-bold">
+              No options matches. Click to show all options
+            </p>
+          )}
         </ul>
       </div>
     </>

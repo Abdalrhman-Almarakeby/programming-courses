@@ -74,7 +74,7 @@ export default function AddCourse() {
   }
 
   return (
-    <div className="container flex-grow py-8">
+    <section className="container flex-grow py-8">
       {isLoading && <Loading />}
       <h2 className="text-balance pb-6 text-center text-4xl font-semibold capitalize">
         Contribute and add your favorite courses !!!
@@ -95,7 +95,7 @@ export default function AddCourse() {
         action={API_ENDPOINT}
         method="post"
         onSubmit={handleSubmit}
-        className="grid gap-8 pt-8 md:grid-cols-2 xl:grid-cols-3"
+        className="grid gap-8 pt-8 sm:grid-cols-2 sm:text-lg xl:grid-cols-3"
       >
         <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="name">Name: </label>
@@ -137,18 +137,6 @@ export default function AddCourse() {
             }
           />
         </div>
-        <div className="flex flex-col gap-4 md:col-span-2">
-          <label htmlFor="description">Description about the course: </label>
-          <textarea
-            value={formData.description}
-            onChange={handleChange}
-            className="min-h-[100px] p-2 md:max-w-80"
-            name="description"
-            id="description"
-            placeholder="Write a description about the course including the level, duration, topics, etc."
-            required
-          />
-        </div>
         <div className="flex flex-wrap items-center gap-4">
           <label htmlFor="field">Field:</label>
           <Select
@@ -171,7 +159,19 @@ export default function AddCourse() {
             }
           />
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 sm:col-span-2">
+          <label htmlFor="description">Description about the course: </label>
+          <textarea
+            value={formData.description}
+            onChange={handleChange}
+            className="min-h-[100px] w-full p-2 md:max-w-80"
+            name="description"
+            id="description"
+            placeholder="Write a description about the course including the level, duration, topics, etc."
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-4 sm:col-span-2">
           <label htmlFor="topics">topics: </label>
           <Select
             options={[...TOPICS].sort((first, second) => {
@@ -236,12 +236,12 @@ export default function AddCourse() {
           />
         </div>
         <button
-          className="mt-8 justify-self-center rounded-md bg-emerald-800 px-4 py-2 capitalize text-white transition hover:bg-emerald-900 focus:outline-offset-4"
+          className="mt-8 justify-self-center rounded-md bg-emerald-800 px-4 py-2 capitalize text-white transition hover:bg-emerald-900 focus:outline-offset-4 sm:col-span-2"
           disabled={isLoading}
         >
           {isLoading ? "Adding..." : "Add the course"}
         </button>
       </form>
-    </div>
+    </section>
   );
 }

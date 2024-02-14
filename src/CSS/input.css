@@ -32,13 +32,6 @@
   label {
     @apply pl-1 font-semibold;
   }
-
-  @media print {
-    html,
-    body {
-      display: none;
-    }
-  }
 }
 
 @layer components {

@@ -78,9 +78,18 @@ export default function Header() {
           ref={menuRef}
           className={` ${
             menuOpen
-              ? "right-0 visible pointer-events-auto "
-              : "-right-full invisible pointer-events-none md:visible md:pointer-events-auto"
-          }  bg-emerald-800  pt-20 md:pt-0 flex-col-reverse absolute top-0 px-4 md:p-0 flex md:min-h-0 min-h-[100svh] items-center md:flex-row md:bg-auto md:z-auto justify-end md:justify-end gap-4 transition-[right] md:static`}
+              ? "right-0 pointer-events-auto "
+              : "-right-full pointer-events-none md:visible md:pointer-events-auto"
+          }  bg-emerald-800  pt-20 md:pt-0 duration-300 flex-col-reverse absolute top-0 px-4 md:p-0 flex md:min-h-0 min-h-[100svh] items-center md:flex-row md:bg-auto md:z-auto justify-end md:justify-end gap-4 transition-[right] md:static`}
+          onTransitionEnd={(e) => {
+            if (menuOpen) {
+              e.target.classList.add("visible");
+              e.target.classList.remove("invisible");
+            } else {
+              e.target.classList.add("invisible");
+              e.target.classList.remove("visible");
+            }
+          }}
         >
           <li onClick={() => setMenuOpen(false)}>
             <Link to="/courses">Courses</Link>

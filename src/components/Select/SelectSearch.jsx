@@ -35,6 +35,7 @@ export default function SelectSearch(props) {
 
   function handleSearchBlur(e) {
     if (e.relatedTarget !== props.selectContainer) props.setIsOpen(false);
+    props.setFilteredOptions(props.options);
     e.target.value = "";
   }
 
