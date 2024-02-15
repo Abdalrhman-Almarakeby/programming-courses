@@ -5,7 +5,6 @@ import SelectedItem from "./SelectedItem.jsx";
 
 export default function Select(props) {
   const [filteredOptions, setFilteredOptions] = useState(props.options);
-  console.log(filteredOptions.length);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 

@@ -20,13 +20,13 @@
   input,
   textarea,
   .select-element {
-    @apply w-full rounded-lg border border-emerald-800 bg-white p-2;
+    @apply w-full rounded-lg border border-darkBlue bg-white p-2;
   }
 
   input:focus,
   textarea:focus,
   .select-element:focus {
-    @apply outline-8 outline-offset-2 outline-darkBlue;
+    @apply outline-8 outline-offset-2 outline-emerald-800;
   }
 
   label {
