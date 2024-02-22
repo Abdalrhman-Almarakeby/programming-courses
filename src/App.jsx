@@ -7,6 +7,7 @@ import Course from "./pages/Course";
 import AddCourse from "./pages/AddCourse";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import "./CSS/main.css";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/auth">
           <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
         </Route>
       </Routes>
       <Footer />

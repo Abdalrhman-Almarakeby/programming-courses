@@ -67,10 +67,6 @@ export default function SelectSearch(props) {
 
   function handleSearchFocus() {
     props.setIsOpen(true);
-    // setTimeout(
-    //   () => props.selectContainer?.querySelector("li")?.scrollIntoView({ behavior: "instant" }),
-    //   0
-    // );
   }
 
   return (

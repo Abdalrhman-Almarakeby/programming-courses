@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useFetch(url, options) {
+export default function useFetch(url, options, dependencies) {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ export default function useFetch(url, options) {
       });
 
     return () => abortCont.abort();
-  }, [url, options]);
+  }, dependencies || [url, options]);
 
   return { data, isPending, error };
 }

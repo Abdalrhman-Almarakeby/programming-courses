@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useScrollDirection } from "../hooks/useScrollDirection";
 import hamburgerIcon from "../assets/icons/icon-hamburger.svg";
 import closeIcon from "../assets/icons/icon-close.svg";
@@ -7,7 +7,6 @@ import closeIcon from "../assets/icons/icon-close.svg";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [onTop, setOnTop] = useState(true);
-  const { pathname } = useLocation();
   const scrollDirection = useScrollDirection();
 
   const menuRef = useRef(null);
@@ -52,7 +51,7 @@ export default function Header() {
   return (
     <header
       className={`bg-emerald-800 z-30 fixed w-full transition-[top] duration-300 text-white ${
-        !(scrollDirection === "down") || onTop ? "top-0" : "-top-full"
+        !(scrollDirection === "down") || onTop ? "top-0" : "-top-full lg:top-0"
       }`}
     >
       <nav className="flex items-center gap-8 overflow-x-hidden py-4 pl-4 pr-8 md:container">
@@ -80,8 +79,11 @@ export default function Header() {
             menuOpen
               ? "right-0 pointer-events-auto "
               : "-right-full pointer-events-none md:visible md:pointer-events-auto"
-          }  bg-emerald-800  pt-20 md:pt-0 duration-300 flex-col-reverse absolute top-0 px-4 md:p-0 flex md:min-h-0 min-h-[100svh] items-center md:flex-row md:bg-auto md:z-auto justify-end md:justify-end gap-4 transition-[right] md:static`}
+          }  bg-emerald-800  items-stretch pt-20 md:items-center md:pt-0 duration-300 flex-col-reverse absolute top-0 px-4 md:p-0 flex md:min-h-0 min-h-[100svh] md:flex-row md:bg-auto md:z-auto justify-end md:justify-end gap-4 transition-[right] md:static`}
           onTransitionEnd={(e) => {
+            if (menuRef.current !== e.target) return;
+            // if the menu is open, make it visible and if it is closed, make it invisible
+            // make it after transition end so that the menu is visible before it is closed
             if (menuOpen) {
               e.target.classList.add("visible");
               e.target.classList.remove("invisible");
@@ -92,29 +94,29 @@ export default function Header() {
           }}
         >
           <li onClick={() => setMenuOpen(false)}>
-            <Link to="/courses">Courses</Link>
+            <Link to="/courses" className="block text-center font-medium">
+              Courses
+            </Link>
           </li>
           <li onClick={() => setMenuOpen(false)}>
-            <Link to="/add-course">Add Course</Link>
+            <Link to="/add-course" className="block text-center font-medium">
+              Add Course
+            </Link>
           </li>
-          {/* {!pathname.includes("auth") && (
-            <li onClick={()=> setMenuOpen(false)}>
-              <Link to="/account">
-                <img
-                  src="https://placehold.co/100"
-                  alt="Avatar"
-                  className="h-10 w-10 rounded-full"
-                />
-              </Link>
-            </li>
-          )} */}
-
           <li onClick={() => setMenuOpen(false)}>
             <Link
               to="/auth/login"
-              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-darkBlue"
+              className="block rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-darkBlue transition duration-300 hover:bg-darkBlue hover:text-white"
             >
               Log in
+            </Link>
+          </li>
+          <li onClick={() => setMenuOpen(false)}>
+            <Link
+              to="/auth/signup"
+              className="block rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-darkBlue transition duration-300 hover:bg-darkBlue hover:text-white"
+            >
+              Sign up
             </Link>
           </li>
         </ul>

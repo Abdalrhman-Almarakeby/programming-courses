@@ -144,7 +144,6 @@ export const TOPICS = [
   "React Hook Form",
   "React Icons",
   "React Native",
-  "React Native",
   "React Query",
   "React Router",
   "React Testing Library",

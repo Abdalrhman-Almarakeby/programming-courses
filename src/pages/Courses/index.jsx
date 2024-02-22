@@ -2,7 +2,7 @@ import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../../components/Loading";
 import FilterBar from "./FilterBar";
-import CourseCard from "./CourseCard";
+import CourseCard from "../../components/CourseCard";
 
 const API_ENDPOINT = "https://courses-api-isuk.onrender.com/courses";
 
@@ -11,6 +11,7 @@ export default function Home() {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState({});
 
+  console.log(courses);
   return (
     <div className="flex-grow">
       <FilterBar setFilters={setFilters} />

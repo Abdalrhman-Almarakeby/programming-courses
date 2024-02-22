@@ -38,9 +38,7 @@ export default function Select(props) {
       case "Space":
         setIsOpen((prev) => !prev);
 
-        if (isOpen) {
-          toggleOption(props.options[highlightedIndex]);
-        }
+        if (isOpen) toggleOption(props.options[highlightedIndex]);
 
         break;
       case "ArrowUp":
