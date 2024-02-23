@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 import { useScrollDirection } from "../hooks/useScrollDirection";
 import hamburgerIcon from "../assets/icons/icon-hamburger.svg";
 import closeIcon from "../assets/icons/icon-close.svg";
 
 export default function Header() {
+  const { user } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
   const [onTop, setOnTop] = useState(true);
   const scrollDirection = useScrollDirection();
@@ -103,22 +105,37 @@ export default function Header() {
               Add Course
             </Link>
           </li>
-          <li onClick={() => setMenuOpen(false)}>
-            <Link
-              to="/auth/login"
-              className="block rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-darkBlue transition duration-300 hover:bg-darkBlue hover:text-white"
-            >
-              Log in
-            </Link>
-          </li>
-          <li onClick={() => setMenuOpen(false)}>
-            <Link
-              to="/auth/signup"
-              className="block rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-darkBlue transition duration-300 hover:bg-darkBlue hover:text-white"
-            >
-              Sign up
-            </Link>
-          </li>
+          {user ? (
+            <li onClick={() => setMenuOpen(false)}>
+              <Link to="/account">
+                {/* <img src={user.image} alt="user image" className="h-10 w-10 rounded-full object-cover" /> */}
+                <img
+                  src="https://placehold.co/400"
+                  alt={user.name}
+                  className="size-10 rounded-full object-cover"
+                />
+              </Link>
+            </li>
+          ) : (
+            <>
+              <li onClick={() => setMenuOpen(false)}>
+                <Link
+                  to="/auth/login"
+                  className="block rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-darkBlue transition duration-300 hover:bg-darkBlue hover:text-white"
+                >
+                  Log in
+                </Link>
+              </li>
+              <li onClick={() => setMenuOpen(false)}>
+                <Link
+                  to="/auth/signup"
+                  className="block rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-darkBlue transition duration-300 hover:bg-darkBlue hover:text-white"
+                >
+                  Sign up
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

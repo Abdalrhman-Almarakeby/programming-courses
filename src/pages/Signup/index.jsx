@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useStorage";
+import { useUser } from "../../context/UserContext";
 import Loading from "../../components/Loading";
 import ShowIcon from "../../assets/icons/show-eye.svg?react";
 import HideIcon from "../../assets/icons/hide-eye.svg?react";
@@ -16,6 +17,7 @@ export default function Signup() {
     confirmPassword: "",
   });
   const { setValue: setToken } = useLocalStorage("token", "");
+  const { setUser } = useUser();
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
@@ -45,13 +47,14 @@ export default function Signup() {
     if (response.ok) {
       console.log(data);
       setToken(data.token);
+      setUser(data.user);
       setTimeout(() => navigate("/"), 0);
     } else {
       console.log(data);
       setErrors(data);
     }
   }
-  console.log(errors);
+
   return (
     <section className="container grid flex-grow place-items-center py-6 md:py-8">
       {isLoading && <Loading />}
