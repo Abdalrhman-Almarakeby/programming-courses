@@ -4,6 +4,7 @@ import { useUser } from "../context/UserContext";
 import { useScrollDirection } from "../hooks/useScrollDirection";
 import hamburgerIcon from "../assets/icons/icon-hamburger.svg";
 import closeIcon from "../assets/icons/icon-close.svg";
+import UserAvatarSVG from "../assets/user-avatar.svg?react";
 
 export default function Header() {
   const { user } = useUser();
@@ -108,11 +109,9 @@ export default function Header() {
           {user ? (
             <li onClick={() => setMenuOpen(false)}>
               <Link to="/account">
-                {/* <img src={user.image} alt="user image" className="h-10 w-10 rounded-full object-cover" /> */}
-                <img
-                  src="https://placehold.co/400"
+                <UserAvatarSVG
                   alt={user.name}
-                  className="size-10 rounded-full object-cover"
+                  className="mx-auto size-12 rounded-full object-cover lg:size-10"
                 />
               </Link>
             </li>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useUser } from "./context/UserContext";
 import { useLocalStorage } from "./hooks/useStorage";
@@ -31,31 +32,27 @@ export default function App() {
     []
   );
 
-  if (userData) setUser(userData);
+  useEffect(() => {
+    if (userData) setUser(userData);
+  }, [setUser, userData]);
 
   return (
     <div className="relative flex min-h-[100svh] flex-col bg-[#e9f4f0] pt-16">
-      {isPending ? (
-        <Loading />
-      ) : (
-        <>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<Course />} />
-            <Route path="/add-course" element={<AddCourse />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/auth">
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-            </Route>
-            <Route path="*" element={<Error />} />
-          </Routes>
-          <Footer />
-        </>
-      )}
-      {}
+      {isPending && <Loading />}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:id" element={<Course />} />
+        <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/auth">
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+        </Route>
+        <Route path="*" element={<Error />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

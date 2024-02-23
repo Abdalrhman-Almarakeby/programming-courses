@@ -11,7 +11,7 @@ export default function Home() {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState({});
 
-  console.log(courses);
+  console.table(courses);
   return (
     <div className="flex-grow">
       <FilterBar setFilters={setFilters} />
